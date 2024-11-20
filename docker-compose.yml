@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   backend:
     build:
@@ -9,8 +7,11 @@ services:
     volumes:
       - ./backend:/usr/src/app
     env_file:
-      - ./backend/.env
-    command: ["npm", "run", "dev"]
+      - .env
+    depends_on:
+      - database  
+    command: ["npx", "ts-node", "src/index.ts"]
+    restart: always 
 
   frontend:
     build:
@@ -19,4 +20,18 @@ services:
       - "80:80"
     volumes:
       - ./frontend:/usr/src/app
-    
+    env_file:
+      - .env
+    depends_on:
+      - backend
+    restart: always   
+
+  database:            
+    image: postgres
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}       # Variáveis lidas do .env
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
