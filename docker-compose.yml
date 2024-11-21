@@ -11,7 +11,6 @@ services:
     depends_on:
       - database  
     command: ["npx", "ts-node", "src/index.ts"]
-    restart: always 
 
   frontend:
     build:
@@ -24,7 +23,6 @@ services:
       - .env
     depends_on:
       - backend
-    restart: always   
 
   database:            
     image: postgres
