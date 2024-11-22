@@ -1,5 +1,5 @@
-import sequelize from './config/database'
-import Driver from './models/driver.model';
+import sequelize from './database'
+import Driver from '../models/driver.model';
 
 async function syncDatabase() {
     try {
