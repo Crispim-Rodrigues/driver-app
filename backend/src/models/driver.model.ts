@@ -7,7 +7,8 @@ class Driver extends Model {
     declare description: string; // Descrição do Motorista
     declare car: string; // Carro
     declare rating: number; // Avaliacao do motorista
-    declare price_per_km: number; // Preço por Km
+    declare price_per_km: number;
+    declare comment: string; // Preço por Km
     declare min_km: number; // Quilometragem mínima
 }
 
@@ -32,6 +33,9 @@ Driver.init({
     },
     price_per_km: {
         type: DataTypes.DECIMAL(5, 2)
+    },
+    comment:{
+        type: DataTypes.STRING
     },
     min_km: {
         type: DataTypes.INTEGER, // Quilometragem mínima para aceitar corridas
