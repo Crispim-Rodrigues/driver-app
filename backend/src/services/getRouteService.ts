@@ -30,6 +30,7 @@ export async function getRouteService(origin: string, destination: string) {
     throw {
       error_code: "FETCHING_ERROR",
       error_description: error.message || "Falha na solicitação de rota",
+      statusCode: 500
     };
   }
 }

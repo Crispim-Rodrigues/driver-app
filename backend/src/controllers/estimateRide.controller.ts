@@ -1,7 +1,11 @@
 import { Request, Response } from "express";
-
-import { getRouteService } from "../services/getRouteService";
 import { mockService } from "../services/mockService";
+
+interface CustomError extends Error{
+  error_code?: string;
+  error_description?: string;
+  statusCode?: number;
+}
 
 export async function estimateRide(req: Request, res: Response) {
   try {
@@ -11,12 +15,13 @@ export async function estimateRide(req: Request, res: Response) {
     
     res.status(200).json(response);
   } catch (error) {
-    if (error) {
-      res.status(500).json({ error });
-    } else {
-      res
-        .status(500)
-        .json({ error_code: "INTERNAL_ERROR", error_description: error });
-    }
+
+    const customError = error as CustomError
+
+    res.status(customError.statusCode!).json({ 
+      error_code: customError.error_code || "INTERNAL_ERROR",
+      error_description: customError.error_description || "Erro desconhecido"
+     });
+
   }
 }

@@ -11,6 +11,7 @@ export async function mockService(origin: string, destination: string) {
       error_code: "INVALID_DATA",
       error_description:
         "Os endereços de origem e destino não podem ser o mesmo endereço.",
+      statusCode: 400
     };
   }
 
@@ -25,8 +26,9 @@ export async function mockService(origin: string, destination: string) {
     throw {
       error_code: "DRIVER_NOT_FOUND",
       error_description: "Motorista não encontrado",
+      statusCode: 404
     };
-  // Aqui você pode usar os dados reais do Maps para calcular
+
   const mockResult = {
     origin: routeResponse.legs[0].startLocation.latLng,
     destination: routeResponse.legs[0].endLocation.latLng,

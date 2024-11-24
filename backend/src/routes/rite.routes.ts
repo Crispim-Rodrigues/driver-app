@@ -8,4 +8,5 @@ const rideRouter = express.Router();
 // Rota para estimar corrida
 rideRouter.post("/estimate", validateRide(estimateRideSchema), estimateRide)
 
+
 export default rideRouter;
