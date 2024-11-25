@@ -32,7 +32,8 @@ Driver.init({
         type: DataTypes.DECIMAL(2, 1)
     },
     price_per_km: {
-        type: DataTypes.DECIMAL(5, 2)
+        type: DataTypes.DECIMAL(5, 2),
+        allowNull: false
     },
     comment:{
         type: DataTypes.STRING

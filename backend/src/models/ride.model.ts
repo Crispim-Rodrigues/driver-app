@@ -9,7 +9,7 @@ class Ride extends Model {
     declare destination: string;
     declare distance: number;
     declare duration: string;
-    declare price: number;
+    declare value: number;
     declare driver_id: number;
     declare status: "pending" | "confirmed";
 }
@@ -40,7 +40,7 @@ Ride.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    price: {
+    value: {
         type: DataTypes.FLOAT,
         allowNull: true
     },
