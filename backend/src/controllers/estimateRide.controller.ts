@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import { mockService } from "../services/mockService";
+import Ride from "../models/ride.model";
+import { pendingRide } from "../services/pendingRideService";
 
 interface CustomError extends Error{
   error_code?: string;
@@ -13,6 +15,8 @@ export async function estimateRide(req: Request, res: Response) {
 
     const response = await mockService(origin, destination);
     
+    await pendingRide(user, origin, destination, response.distance, response.duration);
+
     res.status(200).json(response);
   } catch (error) {
 

@@ -11,6 +11,7 @@ class Ride extends Model {
     declare duration: string;
     declare price: number;
     declare driver_id: number;
+    declare status: "pending" | "confirmed";
 }
 
 Ride.init({
@@ -41,7 +42,7 @@ Ride.init({
     },
     price: {
         type: DataTypes.FLOAT,
-        allowNull: false
+        allowNull: true
     },
     driver_id: {
         type: DataTypes.INTEGER,
@@ -49,6 +50,10 @@ Ride.init({
             model: Driver,
             key: 'id'
         },
+        allowNull: true
+    },
+    status: {
+        type: DataTypes.STRING,
         allowNull: false
     }
 }, {
