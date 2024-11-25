@@ -44,10 +44,10 @@ export async function confirmService(newRideData: request): Promise<boolean>{
         statusCode: 400
     }
 
-    await Ride.update({price: realValue, driver_id: requestDriver.id, status: 'confirmed'}, {
+    await Ride.update({value: realValue, driver_id: requestDriver.id, status: 'confirmed'}, {
         where:{
             customer_id: newRideData.customer_id,
-            status:"pending"
+            status:"pending",
         }
     })
     return true

@@ -12,6 +12,10 @@ class Ride extends Model {
     declare value: number;
     declare driver_id: number;
     declare status: "pending" | "confirmed";
+    declare createdAt: Date;
+    declare updatedAt: Date;
+
+    declare driver?: { id: number; name: string };
 }
 
 Ride.init({

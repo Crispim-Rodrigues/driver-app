@@ -15,7 +15,7 @@ app.use(express.json());
 syncDatabase();
 
 //configurar rotas
-app.use('/rides', rideRouter);
+app.use('/ride', rideRouter);
 
 
 const PORT = 8080;

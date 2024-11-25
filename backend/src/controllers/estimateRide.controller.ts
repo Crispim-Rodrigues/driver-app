@@ -3,8 +3,6 @@ import { mockService } from "../services/mockService";
 import { pendingRide } from "../services/pendingRideService";
 import { CustomError } from "../types/erros";
 
-
-
 export async function estimateRide(req: Request, res: Response) {
   try {
     const { user, origin, destination } = req.body;
