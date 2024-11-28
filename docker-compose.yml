@@ -4,6 +4,8 @@ services:
       context: ./backend
     ports:
       - "8080:8080"
+    networks:
+      - app-network
     volumes:
       - ./backend:/usr/src/app
     env_file:
@@ -17,12 +19,19 @@ services:
       context: ./frontend
     ports:
       - "80:80"
+    networks:
+      - app-network
+    environment:
+      VITE_API_URL: "http://backend:8080"
     volumes:
       - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
     env_file:
       - .env
     depends_on:
       - backend
+    stdin_open: true
+    tty: true
 
   database:            
     image: postgres
@@ -33,3 +42,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
       - "5432:5432"
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge

@@ -1,12 +1,11 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import syncDatabase from './config/syncDataBase';
-import rideRouter from "./routes/rite.routes"
+import rideRouter from "./routes/ride.routes";
 
 dotenv.config();
 
 const app = express();
-
 
 // Middleware para parsing de JSON
 app.use(express.json());

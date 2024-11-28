@@ -9,4 +9,19 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    port: 80,
+    watch: {
+      usePolling: true
+    },
+    host: true,
+    proxy: {
+      '/ride/estimate': {
+        target: 'http://backend:8080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/ride\/estimate/, '/ride/estimate'),
+      },
+    }
+  }
 })
+

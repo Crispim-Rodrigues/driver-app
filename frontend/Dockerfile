@@ -1,20 +1,20 @@
-# Usando Node.js para build do React
-FROM node:18 as builder
+# Imagem
+FROM node:18-alpine
 
+# Diretório de trabalho
 WORKDIR /usr/src/app
 
+# Copia arquivos de dependências
 COPY package*.json ./
 
+# Instala dependências
 RUN npm install
 
+# Copia o restante do código
 COPY . .
 
-RUN npm run build
-
-FROM nginx:alpine
-
-COPY --from=builder /usr/src/app/build /usr/share/nginx/html
-
+# Expõe a porta do backend
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+# Comando para iniciar o servidor
+CMD ["npm", "run", "dev", "--", "--host"]
